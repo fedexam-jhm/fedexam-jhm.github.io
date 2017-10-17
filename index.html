@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FED exam - jhm</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="main" class="container-fluid" ng-controller="MainController" ng-cloak>
+      <header>
+        <div class="top-bar visible-lg-block visible-md-block clearfix">
+          <div class="container">
+            <div>
+              <a href="#">Dealers and Distributors</a>
+              <a href="#">Commercial Service <img alt="share.png" src="img/share.png"></a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-wrap">
+          <div class="container">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">
+                    <img alt="logo.png" src="img/logo.png">
+                  </a>
+                  <a href="#" class="find-min-btn"><img src="img/marker.png">FIND A PRO</a>
+                </div>
+                <div class="collapse navbar-collapse" id="nav-menu">
+                  <span class="menu-title">MENU</span>
+                  <button type="button" class="collapsed menu-close" data-toggle="collapse" data-target="#nav-menu" aria-expanded="false">
+                    &times;
+                  </button>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" class="clearfix"><span>Pools &amp; Spas</span><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+                    <li><a href="#" class="clearfix"><span>Supplies</span><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+                    <li><a href="#" class="clearfix"><span>Resources</span><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+                    <li><a href="#" class="clearfix"><span>Services</span><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+                    <li><a href="#" class="find-pro-btn"><img src="img/marker.png">Find a Pool Pro</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <div class="main-content container">
+        <div class="row rslts-fltr-wrp">
+          <div class="col-lg-12">
+            <div class="m-wrap clearfix">
+              <div class="dealers">
+                <span>7 dealers in 28226</span>
+              </div>
+              <span class="border"></span>
+              <div class="checkgrp">
+                  <span class="grp-title">Filter Results</span>
+                  <ul>
+                    <li>
+                      <input type="checkbox" id="service" ng-model="filter.service"/>
+                      <label for="service">Service</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" id="installation" ng-model="filter.installation"/>
+                      <label for="installation">Installation</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" id="residential" ng-model="filter.residential"/>
+                      <label for="residential">Residential</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" id="commercial" ng-model="filter.commercial"/>
+                      <label for="commercial">Commercial</label>
+                    </li>
+                  </ul>
+                  <a href="#" class="tooltip-btn">?</a>
+                </div>
+                <div class="checkgrp-min">
+                  <div class="toggle-collapse">
+                    <span>Filter Results</span>
+                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#checkgrp-min-menu"><span class="caret"></span></button>
+                  </div>
+                </div>
+            </div>
+            <div id="checkgrp-min-menu" class="collapse">
+              <ul>
+                <li>
+                  <input type="checkbox" id="service-min" ng-model="filter.service"/>
+                  <label for="service-min">Service</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="installation-min" ng-model="filter.installation"/>
+                  <label for="installation-min">Installation</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="residential-min" ng-model="filter.residential"/>
+                  <label for="residential-min">Residential</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="commercial-min" ng-model="filter.commercial"/>
+                  <label for="commercial-min">Commercial</label>
+                  <a href="#" class="tooltip-btn">?</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row info-wrp">
+          <div class="col-lg-4 col-md-4" ng-repeat="dealer in data.dealers" ng-if="(!filter.service && !filter.installation && !filter.residential && !filter.commercial) || (filter.service === dealer.data.hasCertifications.service) || (filter.installation === dealer.data.hasCertifications.installation) || (filter.residential === dealer.data.hasCertifications.residential) || (filter.commercial === dealer.data.hasCertifications.commercial)">
+            <div class="thumbnail">
+              <div class="company-name">
+                <h2>{{dealer.data.name}}</h2>
+              </div>
+              <span></span>
+              <a href="#" class="tap-to-call">
+                <span><img alt="phone-icon.png" src="img/phone-icon.png"></span>
+                <span>Tap to call</span>
+                <span>{{dealer.data.phone1}}</span>
+              </a>
+              <div class="company-info">
+                <div class="contact">
+                  <span>
+                    <img alt="phone.png" src="img/phone.png">
+                    <h2>{{dealer.data.phone1}}</h2>
+                  </span>
+                  <span>Can't talk now? Click below to send an email.</span>
+                  <span>
+                    <a href="#" class="contact-pro-btn" data-toggle="modal" data-target="#email-modal-{{dealer.data.companyID}}">
+                      <img alt="email.png" src="img/email.png">
+                      <span>Contact this Pro</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="company-hrs">
+                <span>Business Hours</span>
+                <span>Weekdays {{dealer.data.weekHours.mon}}</span>
+                <span>Saturdays {{dealer.data.weekHours.sat !== "" ? dealer.data.weekHours.sat : "- CLOSED"}}</span>
+                <span>Sundays {{dealer.data.weekHours.sun !== "" ? dealer.data.weekHours.sun === "On Call" ? "- On Call" : dealer.data.weekHours.sun : "- CLOSED"}}</span>
+              </div>
+              <div class="company-specialty clearfix">
+                <div>
+                  <span ng-show="dealer.data.hasCertifications.installation">
+                    <img alt="star.png" src="img/star.png">
+                    <span>Installation Pro</span>
+                  </span>
+                  <span ng-show="dealer.data.hasCertifications.residential">
+                    <img alt="house.png" src="img/house.png">
+                    <span>Residential Pro</span>
+                  </span>
+                </div>
+                <div>
+                   <span ng-show="dealer.data.hasCertifications.service">
+                    <img alt="cog.png" src="img/cog.png">
+                    <span>Service Pro</span>
+                  </span>
+                  <span ng-show="dealer.data.hasCertifications.commercial">
+                    <img alt="people.png" src="img/people.png">
+                    <span>Commercial Pro</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade email-modal" id="email-modal-{{dealer.data.companyID}}" tabindex="-1" role="dialog" aria-labelledby="email-form">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span>EMAIL</span>
+                    <h4 class="modal-title">{{dealer.data.name}}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Fill out the form below and {{dealer.data.name}} will get in touch.</p>
+                    <form name="emailForm" class="clearfix">
+                      <div class="form-group">
+                        <label for="firstlastname">First and Last name</label>
+                        <span class="valid-check" ng-show="emailForm.firstlastname.$valid">&#10003;</span>
+                        <span class="valid-empty" ng-show="!emailForm.firstlastname.$valid"></span>
+                        <input type="text" class="form-control" id="firstlastname" name="firstlastname" placeholder="name" ng-model="flname" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="phone" class="phone">Phone number</label>
+                        <span class="valid-check" ng-show="emailForm.phonenum.$valid">&#10003;</span>
+                        <span class="valid-empty" ng-show="!emailForm.phonenum.$valid"></span>
+                        <input type="number" class="form-control" id="phone" ng-model="phoneno" name="phonenum" placeholder="phone" oninput="this.value=this.value.slice(0,this.maxLength)" maxlength="10" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email address</label>
+                        <span class="valid-empty" ng-show="!emailForm.emailadd.$valid"></span>
+                        <span class="valid-check" ng-show="emailForm.emailadd.$valid">&#10003;</span>
+                        <input type="email" id="email" class="form-control" placeholder="email" name="emailadd" ng-model="email" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="comment">Comments or questions</label>
+                        <span class="opt-text">optional</span>
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label>Do you currently own a pool or spa?</label>
+                        <span class="opt-text pool-spa">optional</span>
+                        <div class="choice-btn-wrp">
+                          <button type="button" class="btn btn-default">Yes</button>
+                          <button type="button" class="btn btn-default">No</button>
+                          <ul>
+                            <li>
+                              <input type="radio" id="choice-yes" name="choice-grp" />
+                              <label for="choice-yes">Yes</label>
+                            </li>
+                            <li>
+                              <input type="radio" id="choice-no" name="choice-grp"/>
+                              <label for="choice-no">No</label>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <span></span>
+                      <div class="send-mail-wrp">
+                      <button type="submit" class="btn btn-default submit-reg">Send my email<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                      <button type="submit" class="btn btn-default submit-min">Send</button>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex."
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="ftr-logo-wrp">
+          <img alt="logo-ftr.png" src="img/logo-ftr.png">
+          <span>
+            <span>CONNECT WITH US</span>
+            <span class="social-links">
+              <a href="#"><img alt="twit.png" src="img/twit.png"></a>
+              <a href="#"><img alt="fb.png" src="img/fb.png"></a>
+              <a href="#"><img alt="youtube.png" src="img/youtube.png"></a>
+            </span>
+          </span>
+        </div>
+        <div class="ftr-links">
+          <div class="frm-top-links visible-sm-block visible-xs-block">
+            <span>
+              <a href="#">Dealers and Distributors</a>
+            </span>
+            <span class="separator">|</span>
+            <span>
+              <a href="#">Commercial Service<img alt="share.png" src="img/share.png"></a>
+            </span>
+          </div>
+          <span class="ftr-border visible-sm-block visible-xs-block"></span>
+          <span>
+            <a href="#">&copy; 2017 Pool Pros</a>
+          </span>
+          <span class="separator">|</span>
+          <span>
+            <a href="#">Privacy Policy</a>
+          </span>
+          <span class="separator">|</span>
+          <span>
+            <a href="#">Terms and Conditions</a>
+          </span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- angularjs -->
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </body>
+</html>
