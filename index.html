@@ -67,26 +67,26 @@
           <div class="col-lg-12">
             <div class="m-wrap clearfix">
               <div class="dealers">
-                <span>7 dealers in 28226</span>
+                <span>{{filterNum}} dealers in 28226</span>
               </div>
               <span class="border"></span>
               <div class="checkgrp">
                   <span class="grp-title">Filter Results</span>
                   <ul>
                     <li>
-                      <input type="checkbox" id="service" ng-model="filter.service"/>
+                      <input type="checkbox" id="service" ng-model="filter.service" ng-change="filterCounter()"/>
                       <label for="service">Service</label>
                     </li>
                     <li>
-                      <input type="checkbox" id="installation" ng-model="filter.installation"/>
+                      <input type="checkbox" id="installation" ng-model="filter.installation" ng-change="filterCounter()"/>
                       <label for="installation">Installation</label>
                     </li>
                     <li>
-                      <input type="checkbox" id="residential" ng-model="filter.residential"/>
+                      <input type="checkbox" id="residential" ng-model="filter.residential" ng-change="filterCounter()"/>
                       <label for="residential">Residential</label>
                     </li>
                     <li>
-                      <input type="checkbox" id="commercial" ng-model="filter.commercial"/>
+                      <input type="checkbox" id="commercial" ng-model="filter.commercial" ng-change="filterCounter()"/>
                       <label for="commercial">Commercial</label>
                     </li>
                   </ul>
