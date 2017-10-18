@@ -102,19 +102,19 @@
             <div id="checkgrp-min-menu" class="collapse">
               <ul>
                 <li>
-                  <input type="checkbox" id="service-min" ng-model="filter.service"/>
+                  <input type="checkbox" id="service-min" ng-model="filter.service" ng-change="filterCounter()"/>
                   <label for="service-min">Service</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="installation-min" ng-model="filter.installation"/>
+                  <input type="checkbox" id="installation-min" ng-model="filter.installation" ng-change="filterCounter()"/>
                   <label for="installation-min">Installation</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="residential-min" ng-model="filter.residential"/>
+                  <input type="checkbox" id="residential-min" ng-model="filter.residential" ng-change="filterCounter()"/>
                   <label for="residential-min">Residential</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="commercial-min" ng-model="filter.commercial"/>
+                  <input type="checkbox" id="commercial-min" ng-model="filter.commercial" ng-change="filterCounter()"/>
                   <label for="commercial-min">Commercial</label>
                   <a href="#" class="tooltip-btn">?</a>
                 </li>
